@@ -1,24 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main   className="container">
+
+        <div className="starter-template">
+          <h1>Bootstrap starter template</h1>
+          <p className="lead">Use this document as a way to quickly start any new project. 
+          All you get is this text and a mostly barebones HTML document.</p>
+        </div>
+
+    </main>
   );
 }
 
