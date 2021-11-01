@@ -45,6 +45,10 @@ export default class Movies extends Component {
         this.setState({ selectedGenre: genre, currentPage: 1 })
     }
 
+    handleSort = sort => {
+        console.log( sort )
+    }
+
     render() {
         const { length: movieCount } = this.state.movies;
         const { movies: allMovies, currentPage, selectedGenre, pageSize } = this.state;
@@ -78,6 +82,7 @@ export default class Movies extends Component {
                             movies={movies}
                             onLike={this.handleLike}
                             onDelete={this.handleDelete.bind(this)}
+                            onSort={this.handleSort}
                         />
 
                         <Pagination
