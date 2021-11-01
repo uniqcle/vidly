@@ -76,7 +76,7 @@ export default class Movies extends Component {
 
                         <MoviesTable
                             movies={movies}
-                            onLike={this.handleLike.bind(this)}
+                            onLike={this.handleLike}
                             onDelete={this.handleDelete.bind(this)}
                         />
 
