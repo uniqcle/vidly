@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { getMovies, } from '../services/fakeMovieService'
 import { getGenres } from '../services/fakeGenreService'
+import _ from 'lodash'
 import MoviesTable from './moviesTable'
 import Pagination from './common/pagination'
 import { paginate } from './utils/paginate'
@@ -13,7 +14,8 @@ export default class Movies extends Component {
         movies: [],
         genres: [],
         pageSize: 4,
-        currentPage: 1
+        currentPage: 1,
+        sortColumn: { column: 'title', order: 'asc' }
     }
 
     componentDidMount() {
@@ -37,7 +39,6 @@ export default class Movies extends Component {
     }
 
     handlePageChange = (page) => {
-        console.log(page)
         this.setState({ currentPage: page, })
     }
 
@@ -46,12 +47,19 @@ export default class Movies extends Component {
     }
 
     handleSort = column => {
-        console.log(column)
+        const sortColumn = { ...this.state.sortColumn }
+        if (sortColumn.column === column)
+            sortColumn.order = (sortColumn.order === 'asc') ? 'desc' : 'asc'
+        else {
+            sortColumn.column = column
+            sortColumn.order = 'asc'
+        }
+        this.setState({ sortColumn })
     }
 
     render() {
         const { length: movieCount } = this.state.movies;
-        const { movies: allMovies, currentPage, selectedGenre, pageSize } = this.state;
+        const { movies: allMovies, currentPage, selectedGenre, pageSize, sortColumn } = this.state;
 
 
         if (movieCount === 0) return <p>There are no movies</p>
@@ -60,7 +68,9 @@ export default class Movies extends Component {
         const filtered = selectedGenre && selectedGenre._id ?
             allMovies.filter(movie => movie.genre._id === selectedGenre._id) : allMovies;
 
-        const movies = paginate(filtered, currentPage, pageSize)
+        const sorted = _.orderBy(filtered, [sortColumn.column], [sortColumn.order])
+
+        const movies = paginate(sorted, currentPage, pageSize)
 
 
         return (
