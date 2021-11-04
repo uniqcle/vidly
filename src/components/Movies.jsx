@@ -39,7 +39,7 @@ export default class Movies extends Component {
     }
 
     handlePageChange = (page) => {
-        console.log(page)
+    
         this.setState({ currentPage: page, })
     }
 
@@ -49,7 +49,7 @@ export default class Movies extends Component {
 
     handleSort = sortColumn => { 
         this.setState({ sortColumn })
-        console.log( sortColumn )
+      
     }
 
     render() {
