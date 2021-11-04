@@ -16,7 +16,7 @@ const ListGroup = (props) => {
 
         {items.map( item => (
             <li 
-            key={item[nameProperty]} 
+            key={item[valueProperty]} 
             className={ (item === selectedGenre) ? "list-group-item active" : "list-group-item "}
             style={{cursor:"pointer"}}
             onClick={ () => onItemSelect(item)}
