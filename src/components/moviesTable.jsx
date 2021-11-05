@@ -29,7 +29,7 @@ export default class MoviesTable extends Component {
   ];
 
   render() {
-    const { movies, onDelete, onLike, sortColumn, onSort } = this.props;
+    const { movies, sortColumn, onSort } = this.props;
 
     return (
       <>
@@ -40,12 +40,7 @@ export default class MoviesTable extends Component {
             onSort={onSort}
           />
 
-          <TableBody
-            data={movies}
-            columns={this.columns}
-            onDelete={onDelete}
-            onLike={onLike}
-          />
+          <TableBody data={movies} columns={this.columns} />
         </table>
       </>
     );
