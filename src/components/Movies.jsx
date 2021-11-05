@@ -69,39 +69,35 @@ export default class Movies extends Component {
 
 
         return (
-            <>
+          <>
+            <div className="row">
+              <div className="col-3">
+                <ListGroup
+                  items={this.state.genres}
+                  selectedGenre={this.state.selectedGenre}
+                  onItemSelect={this.handleGenreSelect}
+                />
+              </div>
+              <div className="col-9">
+                <h3>Showing {filtered.length} movies in the database. </h3>
 
-                <div className="row">
-                    <div className="col-3">
-                        <ListGroup
-                            items={this.state.genres}
-                            selectedGenre={this.state.selectedGenre}
-                            onItemSelect={this.handleGenreSelect}
-                        />
-                    </div>
-                    <div className="col-9">
+                <MoviesTable
+                  movies={movies}
+                  onLike={this.handleLike}
+                  onDelete={this.handleDelete.bind(this)}
+                  onSort={this.handleSort}
+                  sortColumn={sortColumn}
+                />
 
-                        <h3>Showing {filtered.length} movies in the database. </h3>
-
-                        <MoviesTable
-                            movies={movies}
-                            onLike={this.handleLike}
-                            onDelete={this.handleDelete.bind(this)}
-                            onSort={this.handleSort}
-                            sortColumn={sortColumn}
-                        />
-
-                        <Pagination
-                            itemsCount={filtered.length}
-                            pageSize={this.state.pageSize}
-                            onPageChange={this.handlePageChange}
-                            currentPage={this.state.currentPage}
-                        />
-
-                    </div>
-                </div>
-
-            </>
-        )
+                <Pagination
+                  itemsCount={filtered.length}
+                  pageSize={this.state.pageSize}
+                  onPageChange={this.handlePageChange}
+                  currentPage={this.state.currentPage}
+                />
+              </div>
+            </div>
+          </>
+        );
     }
 }

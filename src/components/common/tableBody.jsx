@@ -1,49 +1,26 @@
-import React, {Component} from 'react'
-import Likes from './likes'
+import React, { Component } from "react";
+import _ from "lodash";
 
-export default class TableBody extends Component{
+export default class TableBody extends Component {
+  renderCell(item, column) {
+    if (column.content) return column.content(item);
+    return _.get(item, column.column);
+  }
+  render() {
+    const { data, columns } = this.props;
 
-    render(){
-        const {data, columns} = this.props
-
-        return (
-            <>
-            <tbody>
-                
-                {data.map(item => (
-                    <tbody>
-                        <tr>
-                           {columns.map(column=>
-                             <td></td>
-                            )}
-                        </tr>
-                    </tbody>
-                ))}
-
-            </tbody>
-
-            </>
-        )
-    }
+    return (
+      <>
+        <tbody>
+          {data.map((item) => (
+            <tr>
+              {columns.map((column) => (
+                <td>{this.renderCell(item, column)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </>
+    );
+  }
 }
-
-
-{/* <tr key={movie._id}>
-<th >{movie.title}</th>
-<td>{movie.genre.name}</td>
-<td>{movie.numberInStock}</td>
-<td>{movie.dailyRentalRate}</td>
-<td>
-    <Likes
-        liked={movie.liked}
-        onClick={() => onLike(movie)}
-    />
-</td>
-<td>
-    <button
-        onClick={() => onDelete(movie)}
-        className="btn btn-danger btn-sm">
-        Delete
-    </button>
-</td>
-</tr> */}
