@@ -28,7 +28,7 @@ export default class TableHeader extends Component {
             <thead className="thead-dark">
                 <tr>
                     {columns.map(column => (
-                        <th key={column.column || column.key}
+                        <th className="clickable" key={column.column || column.key}
                             onClick={() => this.raiseSort(column.column)}>{column.label}{this.renderSortIcon(column)}</th>
                     ))}
 
