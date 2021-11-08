@@ -3,12 +3,12 @@ import _ from 'lodash'
 
 export default class TableBody extends Component {
 
-    renderCell(item, column) {
+    renderCell = (item, column) => {
         if (column.content) return column.content(item)
         return _.get(item, column.column);
     }
 
-    createKey(item, column) {
+    createKey = (item, column) => {
         return item._id + (column.column || column.key);
     }
 

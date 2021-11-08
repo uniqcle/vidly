@@ -10,12 +10,12 @@ class MoviesTable extends Component {
         { column: "numberInStock", label: "Stock" },
         { column: "dailyRentalRate", label: "Rate" },
         {
-            key: "stock", content: movie => (
+            key: "like", content: movie => (
                 <Likes liked={movie.liked} onClick={() => this.props.onLike(movie)} />
             )
         },
         {
-            key: "rate", content: (movie) => (
+            key: "delete", content: (movie) => (
                 <button
                     onClick={() => this.props.onDelete(movie)}
                     className="btn btn-danger btn-sm"
