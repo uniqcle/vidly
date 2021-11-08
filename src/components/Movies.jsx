@@ -26,7 +26,6 @@ export default class Movies extends Component {
     handleDelete(product) {
         const filtered = this.state.movies.filter(movie => product._id !== movie._id)
         this.setState({ movies: filtered })
-        console.log(filtered)
     }
     handleLike = (movie) => {
 
@@ -83,9 +82,9 @@ export default class Movies extends Component {
 
                         <MoviesTable
                             movies={movies}
-                            sortColumn={sortColumn}
                             onLike={this.handleLike}
                             onDelete={this.handleDelete.bind(this)}
+                            sortColumn={sortColumn}
                             onSort={this.handleSort}
                         />
 
