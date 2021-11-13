@@ -1,17 +1,30 @@
-import './App.css';
+import React, { Component } from "react";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
+import Movies from "./components/Movies";
+import NavBar from "./components/navBar";
+import Customers from "./components/Customers";
+import Rentals from "./components/rentals";
+import NotFound from "./components/NotFound";
+import "./App.css";
 
-function App() {
-  return (
-    <main   className="container">
-
-        <div className="starter-template">
-          <h1>Bootstrap starter template</h1>
-          <p className="lead">Use this document as a way to quickly start any new project. 
-          All you get is this text and a mostly barebones HTML document.</p>
-        </div>
-
-    </main>
-  );
+class App extends Component {
+  render() {
+    return (
+      <>
+        <NavBar />
+        <main className="container">
+          <Switch>
+            <Route path="/movies" component={Movies} />
+            <Route path="/customers" component={Customers} />
+            <Route path="/rentals" component={Rentals} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect from="/" exact to="/movies" />
+            <Redirect to="/not-found" />
+          </Switch>
+        </main>
+      </>
+    );
+  }
 }
 
 export default App;
