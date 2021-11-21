@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Input from "../components/input";
 
 class LoginForm extends Component {
   state = {
@@ -8,12 +9,11 @@ class LoginForm extends Component {
     },
   };
 
-  username = React.createRef();
-
   handleSubmit = (e) => {
     e.preventDefault();
-    const username = this.username.current.value;
-    console.log("submitted ", username);
+    //const username = this.username.current.value;
+    console.log("submitted ", e.currentTarget);
+    console.log("submitted");
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -28,30 +28,20 @@ class LoginForm extends Component {
     return (
       <>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              name="username"
-              value={account.username}
-              onChange={this.handleChange}
-              ref={this.username}
-              autoFocus
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              onChange={this.handleChange}
-              value={account.password}
-              id="password"
-            />
-          </div>
+          <Input
+            name="username"
+            value={account.username}
+            onChange={this.handleChange}
+            label="Username"
+          />
+
+          <Input
+            name="password"
+            value={account.password}
+            onChange={this.handleChange}
+            label="Password"
+          />
+
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
