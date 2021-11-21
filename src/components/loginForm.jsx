@@ -25,7 +25,8 @@ class LoginForm extends Component {
     //const username = this.username.current.value;
     //console.log("submitted ", e.currentTarget);
     const errors = this.validate();
-    this.setState({ errors });
+      this.setState({ errors });
+      console.log(errors);
     if (errors) return;
 
     //call the server
