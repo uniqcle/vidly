@@ -21,6 +21,12 @@ class LoginForm extends Component {
         //call the server...
     }
 
+    handleChange = e => {
+        const account = { ...this.state.account }
+        account.username = e.currentTarget.value;
+        this.setState({ account })
+    }
+
     render() {
         return (
             <div className="container">
@@ -28,7 +34,12 @@ class LoginForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
-                        <input ref={this.username} autoFocus id="username" type="text" className="form-control" />
+                        <input ref={this.username}
+                            value={this.state.account.username}
+                            onChange={this.handleChange}
+                            autoFocus
+                            id="username"
+                            type="text" className="form-control" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
