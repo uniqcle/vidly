@@ -5,7 +5,7 @@ import Input from "../components/input";
 
 class LoginForm extends Component {
   state = {
-    account: {
+    data: {
       username: "",
       password: "",
     },
@@ -14,7 +14,7 @@ class LoginForm extends Component {
 
 
   schema = {
-    username: Joi.string().required().label("Username"),
+    username: Joi.string().min(3).required().label("Username"),
     password: Joi.string().required().label("Password")
   }
 
@@ -22,7 +22,7 @@ class LoginForm extends Component {
 
   validate = () => {
     const options = { abortEarly: false }
-    const { error } = Joi.validate(this.state.account, this.schema, options)
+    const { error } = Joi.validate(this.state.data, this.schema, options)
     if (!error) return null;
 
     const errors = {}
@@ -30,11 +30,11 @@ class LoginForm extends Component {
       errors[item.path[0]] = item.message;
     return errors;
 
-    // const { account } = this.state;
+    // const { data } = this.state;
     // const errors = {};
-    // if (account.username.trim() === "")
+    // if (data.username.trim() === "")
     //   errors.username = "Username is required...";
-    // if (account.password.trim() === "")
+    // if (data.password.trim() === "")
     //   errors.password = "Password is required...";
     // return Object.keys(errors).length === 0 ? null : errors;
   };
@@ -52,41 +52,43 @@ class LoginForm extends Component {
   };
 
   validateProperty = ({ name, value }) => {
-    const obj = { [name]: value }
-    const schema = { [name]: this.schema[name] }
-    const { error } = Joi.validate(obj, schema)
-    return error ? error.details[0].message : null;
+    // const obj = { name: value }
+    // const schema = { name: this.schema[name] }
+    // const { error } = Joi.validate(obj, schema)
+    // return error ? error.details[0].message : null;
 
-    // if (name === "username") {
-    //   if (value.trim() === "") return "Username is required"
-    //   //
-    // }
-    // if (name == "password") {
-    //   if (value.trim() === "") return "Password is required"
-    // }
+    if (name === "username") {
+      if (value.trim() === "") return "Username is required"
+      //
+    }
+    if (name == "password") {
+      if (value.trim() === "") return "Password is required"
+    }
   }
 
   handleChange = ({ currentTarget: input }) => {
+
+    console.log(input.name)
 
     const errors = { ...this.state.errors }
     const errorMessage = this.validateProperty(input);
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name]
 
-    const account = { ...this.state.account };
-    account[input.name] = input.value;
-    this.setState({ account });
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
+    this.setState({ data });
   };
 
   render() {
-    const { account, errors } = this.state;
+    const { data, errors } = this.state;
 
     return (
       <>
         <form onSubmit={this.handleSubmit}>
           <Input
             name="username"
-            value={account.username}
+            value={data.username}
             onChange={this.handleChange}
             label="Username"
             error={errors.username}
@@ -94,13 +96,13 @@ class LoginForm extends Component {
 
           <Input
             name="password"
-            value={account.password}
+            value={data.password}
             onChange={this.handleChange}
             label="Password"
             error={errors.password}
           />
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" >
             Submit
           </button>
         </form>
