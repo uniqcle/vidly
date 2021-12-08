@@ -12,7 +12,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+<<<<<<< HEAD
 
 .clickable {
   cursor: pointer;
 }
+=======
+.clickable{
+  cursor: pointer;
+}
+>>>>>>> 1c277299681583cfb6de7b7d5e57fd2b0f0f3674
