@@ -9,14 +9,23 @@ class LoginForm extends Component {
       username: "",
       password: "",
     },
+    errors: {},
   };
 
   // componentDidMount() {
   //     this.username.current.focus();
   // }
 
+  validate = () => {
+    return { username: "Username is inccorrent" };
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
+
+    const errors = this.validate();
+    this.setState({ errors });
+    if (errors) return;
 
     //const username = this.username.current.value;
     //call the server...
