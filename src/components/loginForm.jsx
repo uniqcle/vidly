@@ -17,7 +17,13 @@ class LoginForm extends Component {
   // }
 
   validate = () => {
-    return { username: "Username is inccorrent" };
+    const { account } = this.state;
+    const errors = {};
+    if (account.username.trim() === "")
+      errors.username = "Username isnot corrent";
+    if (account.password.trim() === "")
+      errors.password = "Password isnot corrent";
+    return Object.keys(errors).length === 0 ? null : errors;
   };
 
   handleSubmit = (e) => {
