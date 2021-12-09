@@ -102,7 +102,10 @@ export default class Movies extends Component {
                 />
               </div>
               <div className="col-9">
-                <h3>Showing {totalCount} movies in the database. </h3>
+
+                <button className="btn-primary">New Movie</button>
+
+                <span>Showing {totalCount} movies in the database. </span>
 
                 <MoviesTable
                   movies={movies}
