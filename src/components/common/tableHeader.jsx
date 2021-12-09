@@ -17,8 +17,8 @@ export default class TableHeader extends Component {
     const { sortColumn } = this.props;
     if (column.column !== sortColumn.column) return null;
     if (sortColumn.order === "asc")
-      return <i class="fa fa-sort-asc" aria-hidden="true"></i>;
-    return <i class="fa fa-sort-desc" aria-hidden="true"></i>;
+      return <i className="fa fa-sort-asc" aria-hidden="true"></i>;
+    return <i className="fa fa-sort-desc" aria-hidden="true"></i>;
   };
 
   render() {
